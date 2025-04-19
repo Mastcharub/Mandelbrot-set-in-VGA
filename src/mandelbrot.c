@@ -29,8 +29,8 @@ void mandelbrot(){
         for(int x = 0; x < WIDTH; x++){
 
             // Calculate the initial real and imaginary value, based on the pixel location and zoom and position values
-            p_Re = 1.5 * (x - 320 / 2) / (0.5 * zoom * 320) + move_X;
-            p_Im = (y - 200 / 2) / (0.5 * zoom * 200) + move_Y;
+            p_Re = 1.5 * (x - WIDTH / 2) / (0.5 * zoom * WIDTH) + move_X;
+            p_Im = (y - HEIGHT / 2) / (0.5 * zoom * HEIGHT) + move_Y;
             new_z_Re = new_z_Im = old_z_Re = old_z_Im = 0; // start at (0;0)
 
             // Start the iteration process
