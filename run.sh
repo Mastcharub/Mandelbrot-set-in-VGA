@@ -9,6 +9,6 @@ nasm "src/boot/zero.asm" -f bin -o "Binaries/zeroes.bin"
 
 i386-elf-ld -o "Binaries/full_kernel.bin" -Ttext 0x1000 "Binaries/kernel_entry.o" "Binaries/kernel.o" --oformat binary
 
-cat "Binaries/boot.bin" "Binaries/full_kernel.bin" "Binaries/zeroes.bin"  > "Binaries/OS.bin"
+cat "Binaries/boot.bin" "Binaries/full_kernel.bin" "Binaries/zeroes.bin"  > "Binaries/MANDELBROT.bin"
 
-qemu-system-i386 "Binaries/OS.bin"
+qemu-system-i386 "Binaries/MANDELBROT.bin"
