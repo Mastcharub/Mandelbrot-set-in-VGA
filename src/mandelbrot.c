@@ -7,26 +7,25 @@ typedef unsigned int ui32;
 #define VGA             (ui8 *) 0xA0000
 
 void plot(ui16 x, ui16 y, ui8 col);
-void mandelbrot();
+void mandelbrot(float zoom, float move_X, float move_Y);
 
 // Entry point of the 'kernel'
 extern void kmain(){
-    mandelbrot();
+    mandelbrot(1, -0.5, 0); // respectevely: zoom multiplier and x and y coordinates of the view
 }
 
 void plot(ui16 x, ui16 y, ui8 col){
     ui32 offset = (ui32) (y * WIDTH + x);
     *(VGA + offset) = col;
-}
+} 
 
-void mandelbrot(){
+void mandelbrot(float zoom, float move_X, float move_Y){
     float p_Re, p_Im;                               // real and imaginary part of the pixel p
     float new_z_Re, new_z_Im, old_z_Re, old_z_Im;   // real and imaginary parts of new and old z
-    float zoom = 1, move_X = -0.5, move_Y = 0;      // change these to zoom and change position
     int maxIterations = 300;
 
-    for(int y = 0; y < HEIGHT; y++){
-        for(int x = 0; x < WIDTH; x++){
+    for(ui16 x = 0; x < WIDTH; x++){
+        for(ui16 y = 0; y < HEIGHT; y++){
 
             // Calculate the initial real and imaginary value, based on the pixel location and zoom and position values
             p_Re = 1.5 * (x - WIDTH / 2) / (0.5 * zoom * WIDTH) + move_X;
@@ -34,7 +33,7 @@ void mandelbrot(){
             new_z_Re = new_z_Im = old_z_Re = old_z_Im = 0; // start at (0;0)
 
             // Start the iteration process
-            int i;
+            ui16 i;
             for(i = 0; i < maxIterations; i++){
 
                 // Save old value
