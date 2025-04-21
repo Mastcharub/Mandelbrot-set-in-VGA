@@ -24,8 +24,8 @@ void mandelbrot(float zoom, float move_X, float move_Y){
     float new_z_Re, new_z_Im, old_z_Re, old_z_Im;   // real and imaginary parts of new and old z
     int maxIterations = 300;
 
-    for(ui16 x = 0; x < WIDTH; x++){
-        for(ui16 y = 0; y < HEIGHT; y++){
+    for(ui16 y = 0; x < HEIGHT; y++){
+        for(ui16 x = 0; x < WIDTH; x++){
 
             // Calculate the initial real and imaginary value, based on the pixel location and zoom and position values
             p_Re = 1.5 * (x - WIDTH / 2) / (0.5 * zoom * WIDTH) + move_X;
